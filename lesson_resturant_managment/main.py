@@ -98,7 +98,7 @@ class RestaurantOrderManagement:
 
     # Method to update the menu prices based on the selected currency
     def update_menu_prices(self, *args):
-        currency = self.currency_var.get()
+        currency = self.currency_var.get() # the var and get just for the aditional detail
         symbol = "₹" if currency == "INR" else "$"
         rate = self.exchange_rate if currency == "INR" else 1
         for item, label in self.menu_labels.items():
