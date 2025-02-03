@@ -20,5 +20,3 @@ def roman_to_integer(roman):
 roman_numeral = input("Enter a Roman numeral: ")
 print(f"Integer value: {roman_to_integer(roman_numeral.upper())}")
 
-
-
