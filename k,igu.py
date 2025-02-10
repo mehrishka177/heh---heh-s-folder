@@ -13,3 +13,4 @@ for num in range(1,a+1):
                     if rev == num:
                         print(num)
                     
+ti87iopoiuyjkl[][poiuytrea]
