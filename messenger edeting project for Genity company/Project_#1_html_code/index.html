@@ -60,7 +60,6 @@ with open("templates/index.html", "w") as f:
 js_content = """
 var socket = io();
 
-link"<style class="styl.css"></style>""
 socket.on('message', function(msg) {
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(msg));
