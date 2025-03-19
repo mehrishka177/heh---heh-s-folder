@@ -5,5 +5,5 @@ if answer == 2:
 else:
   print("Unfortunately your guess was wrong.")
 
-print("\nPlease tell your mentor why you guessed this?")
 
+print("\nPlease tell your mentor why you guessed this?")
