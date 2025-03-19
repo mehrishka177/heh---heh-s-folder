@@ -1,0 +1,242 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.chat-container {
+    width: 400px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.chat-header {
+    background: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.chat-messages {
+    height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #fafafa;
+}
+
+.message {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    max-width: 80%;
+}
+
+.message.user {
+    background: #28a745;
+    align-self: flex-end;
+}
+
+.chat-input {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+input[type='text'] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.reply-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.reply-buttons button {
+    background: #28a745;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reply-buttons button.no {
+    background: #dc3545;
+}
+
+/* Resetowanie domyślnych marginesów i paddingu */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ustawienia ogólne dla całej strony */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f5f6;
+    color: #333;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Górna belka */
+.header {
+    background-color: #075e54;
+    color: white;
+    padding: 10px 15px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Okno czatu */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+    position: relative;
+}
+
+/* Animacja dla wiadomości */
+@keyframes slideIn {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.message {
+    display: flex;
+    margin-bottom: 15px;
+    opacity: 0;
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+.message.sent .text {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+}
+
+.message.received .text {
+    background-color: #ffffff;
+}
+
+.message .text {
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+    transition: background-color 0.2s ease;
+}
+
+/* Efekt kliknięcia na wiadomość */
+.message .text:hover {
+    background-color: #e5e5e5;
+    cursor: pointer;
+}
+
+/* Okno wprowadzania wiadomości */
+.input-container {
+    background-color: #ffffff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ddd;
+}
+
+.input-container input {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 20px;
+    width: 80%;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.input-container button {
+    background-color: #075e54;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Lista kontaktów */
+.contacts-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contacts-list .contact-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.contacts-list .contact-item:hover {
+    background-color: #f0f0f0;
+}
+
+.contacts-list .contact-item img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.contacts-list .contact-item .contact-info {
+    flex-grow: 1;
+}
+
+.contacts-list .contact-item .contact-name {
+    font-weight: bold;
+}
+
+.contacts-list .contact-item .last-message {
+    font-size: 14px;
+    color: #777;
+}
+
+.contacts-list .contact-item .contact-time {
+    font-size: 12px;
+    color: #999;
+}

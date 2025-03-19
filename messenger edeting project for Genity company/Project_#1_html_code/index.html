@@ -1,0 +1,85 @@
+from flask import Flask, render_template
+from flask_socketio import SocketIO, send, emit
+from datetime import datetime
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app, cors_allowed_origins="*")
+
+users = set()
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@socketio.on('connect')
+def handle_connect():
+    users.add(request.sid)
+    emit('user_count', {'count': len(users)}, broadcast=True)
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    users.discard(request.sid)
+    emit('user_count', {'count': len(users)}, broadcast=True)
+
+@socketio.on('message')
+def handle_message(msg):
+    timestamp = datetime.now().strftime('%H:%M:%S')
+    formatted_msg = f"[{timestamp}] {msg}"
+    print(f"Message: {formatted_msg}")
+    send(formatted_msg, broadcast=True)
+
+if __name__ == '__main__':
+    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
+
+# HTML (index.html) для клиентского интерфейса
+html_content = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="static/chat.js" defer></script>
+</head>
+<body>
+    <h2>Chat</h2>
+    <p>Users online: <span id="user_count">0</span></p>
+    <input type="text" id="message" placeholder="Enter message...">
+    <button onclick="sendMessage()">Send</button>
+    <ul id="messages"></ul>
+</body>
+</html>
+"""
+
+with open("templates/index.html", "w") as f:
+    f.write(html_content)
+
+# JavaScript (chat.js) для работы с WebSocket
+js_content = """
+var socket = io();
+
+link"<style class="styl.css"></style>""
+socket.on('message', function(msg) {
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(msg));
+    document.getElementById("messages").appendChild(li);
+});
+
+socket.on('user_count', function(data) {
+    document.getElementById("user_count").innerText = data.count;
+});
+
+function sendMessage() {
+    var msg = document.getElementById("message").value;
+    if (msg.trim() !== "") {
+        socket.send(msg);
+        document.getElementById("message").value = "";
+    }
+}
+"""
+
+with open("static/chat.js", "w") as f:
+    f.write(js_content)
+    
